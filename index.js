@@ -20,7 +20,7 @@ app.use(chekauth('token'))
 
 
 
-connectDB("mongodb://localhost:27017/DYP").then(()=>{
+connectDB(process.env.MONGO_URI).then(()=>{
     console.log("DB Connected!")
 }).catch((err)=>{
     console.log("DB Connection Failed!")
