@@ -19,13 +19,14 @@ app.use(cookieParser())
 app.use(chekauth('token'))
 
 
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
-connectDB(process.env.MONGO_URI).then(()=>{
-    console.log("DB Connected!")
-}).catch((err)=>{
-    console.log("DB Connection Failed!")
-    console.log(err)
-})
+connectDB(process.env.MONGO_URI).then(() => {
+    console.log("DB Connected!");
+  }).catch((err) => {
+    console.log("DB Connection Failed!");
+    console.error(err);
+  });
 
 app.get("/",(req,res)=>{
     res.render("index",{user:req.user})
