@@ -1,5 +1,5 @@
 const JWT = require('jsonwebtoken');
-const scret = "Khanaval";
+const secret = process.env.JWT_SECRET;
 function cratetoken(user){
     const payload= {
         _id:user._id,

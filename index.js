@@ -1,6 +1,7 @@
+require('dotenv').config();
 const express = require("express")
 const app = express()
-const port = 8005
+const port = 8006
 const path = require("path")
 const {connectDB} = require("./connnectionDB")
 const router = require('./routes/user')
