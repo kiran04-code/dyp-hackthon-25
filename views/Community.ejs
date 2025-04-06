@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(to right, rgb(133, 167, 240) 0%, rgb(167, 178, 249) 100%);
+
+    }
+    form{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .chat-bubble {
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+    #messageInput{
+      width:70% ;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body class="  min-h-screen flex items-center justify-center p-4">
+
+
+
+  <!-- Chat Window -->
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[80vh] flex flex-col overflow-hidden">
+    
+    <!-- Header -->
+    <header class="bg-white border-b p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600">LifeShield Community Chat</h1>
+      <a href="/" class="text-blue-500 hover:underline">← Home</a>
+    </header>
+
+    <!-- Chat Messages -->
+    <main id="chatContainer" class="flex-grow overflow-y-auto px-4 py-4 space-y-4">
+      <% if (result && result.length > 0) { %>
+        <% result.forEach(message => { %>
+          <div class="chat-bubble bg-blue-100 max-w-md">
+            <strong><%= message.createdBy ? message.createdBy.UserName : "Anonymous" %>:</strong>
+            <%= message.message %>
+            <div class="text-sm text-gray-500">
+              <%= new Date(message.createdAt).toLocaleString() %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p class="text-gray-500">No messages yet. Start the conversation!</p>
+      <% } %>
+    </main>
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span class="text-5xl text-gray-300 font-bold opacity-15 select-none"><img src="/image/logo.jpg" alt="LifeShield" style="width: 200px;"></span>
+      </div>
+
+    <!-- Message Input -->
+    <section class="border-t p-4 flex items-center gap-2">
+    <form action="/Community" method="post">  <input id="messageInput" type="text" placeholder="Type your message..."class="flex-grow p-2 rounded-lg border focus:outline-none focus:ring focus:border-blue-500"  name="message" />
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Send</button></form>
+    </section>
+  </div>
+
+  
+</body>
+</html>

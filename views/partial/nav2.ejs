@@ -1,0 +1,92 @@
+<!-- Navbar -->
+<style>
+  .navbar {
+      background: linear-gradient(to right, rgb(26, 33, 48) 0%, rgb(0, 19, 142) 100%);
+  border-radius: 5px;
+
+}
+
+footer {
+  background: linear-gradient(to right, rgb(0, 38, 120) 0%, rgb(69, 61, 182) 100%);
+}
+
+.navbar-brand {
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.navbar-brand:hover {
+  transform: scale(1.03);
+}
+
+.nav-item {
+  border-radius: 20px;
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.nav-item:hover {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%, rgba(243, 234, 255, 0.274) 100%);
+  transform: scale(1.01);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.btn:hover{
+  transition: all 0.2s ease; /* Added to apply out animation */
+  transform: scale(1.01);
+}
+.footer {
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo img {
+  height: 50px;
+}
+
+.footer-social {
+  text-align: right;
+}
+
+.social-icons a img {
+  height: 24px;
+  margin-left: 10px;
+}
+#community-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  
+}
+#community-icon:hover {
+  transform: scale(1.1);
+}
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+  <div class="container-fluid">
+    <img src="/image/logo.png" alt="logo" style="width: 60px; height: 60px; border-radius: 100px;" />
+    <a class="navbar-brand ms-3" href="/view/index.html">Life Shield</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/map">Locate Vaccination Centre</a></li>
+        <li class="nav-item"><a class="nav-link" href="/fa&q">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+       
+      </ul>
+      <form class="d-flex">
+
+        <a href="#"><button type="button" class="btn btn-success" style="margin-right: 10px;">Register</button>
+        </a>
+        <a href="/view/signup.html"><button type="button" class="btn btn-primary">Sign In</button>
+        </a>
+      
+      </form>
+    </div>
+  </div>
+  </nav>

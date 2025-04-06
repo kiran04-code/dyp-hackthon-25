@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us | Health Awareness</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .navbar-brand img {
+      height: 50px;
+    }
+    .navbar {
+      background: linear-gradient(to right, rgb(26, 33, 48) 0%, rgb(0, 19, 142) 100%);
+
+    }
+    .about-header {
+      background-color: #00356d;
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+    }
+    .about-section {
+      padding: 40px 20px;
+      background-color: #e1e4ff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+    }
+    .about-section h2 {
+      color: #007bff;
+    }
+    .footer-logo img {
+      height: 100px;
+    }
+    footer {
+      background: linear-gradient(to right, rgba(26, 33, 48, 0.777) 0%, rgba(0, 19, 142, 0.749) 100%);
+
+      color: white;
+
+    }
+    
+.navbar-brand {
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.navbar-brand:hover {
+  transform: scale(1.03);
+}
+
+.nav-item {
+  border-radius: 20px;
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.nav-item:hover {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%, rgba(243, 234, 255, 0.274) 100%);
+  transform: scale(1.01);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.btn:hover{
+  transition: all 0.2s ease; /* Added to apply out animation */
+  transform: scale(1.01);
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+    <div class="container-fluid">
+      <img src="/image/logo.png" alt="logo" style="width: 60px; height: 60px; border-radius: 100px;" />
+      <a class="navbar-brand ms-3" href="/">Life Shield</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link " href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Locate Vaccination Centre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+        </ul>
+        <form class="d-flex">
+          <a href="signup"><button type="button" class="btn btn-success" style="margin-right: 10px;">Register</button>
+          </a>
+          <a href="/signin"><button type="button" class="btn btn-primary">Sign In</button>
+          </a>
+          
+         <a href="/profile"> <button type="button" class="btn btn-primary btn-lg" style="margin-left: 10px;margin-top: -10px; background-color: rgb(97, 42, 165);">Profile</button></a>
+
+        
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div class="about-header">
+    <img src="/image/logo.png" alt="Logo" class="mb-3" style="height: 120px;border-radius: 100px;">
+    <h1>About Us</h1>
+    <p>Empowering Communities Through Health Awareness</p>
+  </div>
+
+  <!-- About Section -->
+  <section class="about-section container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Our Mission</h2>
+        <p>
+          We are dedicated to spreading accurate, accessible, and empowering health information. 
+          Our focus is on promoting vaccination awareness and combating misinformation to create healthier communities worldwide.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h2>What We Do</h2>
+        <ul>
+          <li>Provide up-to-date resources on vaccines and health tips</li>
+         
+          <li>Partner with local communities and organizations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <h2>Our Values</h2>
+        <p>
+          We believe in the power of knowledge and community. Our values are rooted in integrity, transparency, and compassion.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h2>Join Us</h2>
+        <p>
+          Together, we can make a difference. Join us in our mission to promote health awareness and education.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <h2>Want to Get Involved?</h2>
+      <p>
+        Reach out to us to become a volunteer, share your story, or collaborate on community outreach. Together, we can make a lasting impact.
+      </p>
+    </div>
+    <div class="mt-4">
+      <h2>Future Scope for LifeShield.com</h2>
+      <p>
+        In the future, LifeShield.com aims to introduce a slot booking system for nearby vaccination centers. Users will also be able to check real-time vaccine availability. These features will enhance convenience and ensure a smoother vaccination experience.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white text-lg-start">
+    <div class="container p-4">
+      <div class="row align-items-center">
+
+        <!-- Logo -->
+        <div class="col-lg-3 col-md-12 mb-2 mb-lg-0 text-center text-lg-start" >
+          <img src="/image/logo.png" alt="Logo" style="height: 100px;border-radius: 100px;">
+        </div>
+
+        <!-- Center Content -->
+        <div class="col-lg-6 col-md-12 text-center">
+          <h5>Contact Us:</h5>
+          <p>Email: info@healthawareness.org<br>Phone: +123 456 7890</p>
+        </div>
+
+        <!-- Follow Us -->
+        <div class="col-lg-3 col-md-12 text-center text-lg-end">
+          <h5 class="text-uppercase mb-3">Follow Us:</h5>
+          <ul class="list-unstyled d-flex justify-content-center justify-content-lg-end">
+            <li class="ms-3">
+              <a href="https://www.facebook.com" class="text-white" target="_blank">
+                <i class="fab fa-facebook fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.twitter.com" class="text-white" target="_blank">
+                <i class="fab fa-twitter fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.youtube.com" class="text-white" target="_blank">
+                <i class="fab fa-youtube fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2025 Health Awareness Initiative
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQs - Life Shield</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .faq-section {
+      padding: 60px 20px;
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .accordion-button:not(.collapsed) {
+      background-color: #e3f2fd;
+      color: #0d6efd;
+    }
+    .navbar {
+      background: linear-gradient(to right, rgb(26, 33, 48) 0%, rgb(0, 19, 142) 100%);
+  border-radius: 5px;
+
+}
+
+footer {
+  background: linear-gradient(to right, rgb(0, 38, 120) 0%, rgb(69, 61, 182) 100%);
+}
+
+.navbar-brand {
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.navbar-brand:hover {
+  transform: scale(1.03);
+}
+
+.nav-item {
+  border-radius: 20px;
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.nav-item:hover {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%, rgba(243, 234, 255, 0.274) 100%);
+  transform: scale(1.01);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.btn:hover{
+  transition: all 0.2s ease; /* Added to apply out animation */
+  transform: scale(1.01);
+}
+.footer {
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo img {
+  height: 50px;
+}
+
+.footer-social {
+  text-align: right;
+}
+
+.social-icons a img {
+  height: 24px;
+  margin-left: 10px;
+}
+#community-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  
+}
+#community-icon:hover {
+  transform: scale(1.1);
+}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <img src="/image/logo.png" alt="logo" style="width: 60px; height: 60px; border-radius: 100px;" />
+    <a class="navbar-brand ms-3" href="/view/index.html">Life Shield</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/map">Locate Vaccination Centre</a></li>
+        <li class="nav-item"><a class="nav-link" href="/fa&q">FAQs</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+      </ul>
+      <form class="d-flex">
+        <a href="/signup"><button type="button" class="btn btn-success me-2">Register</button></a>
+        <a href="/signin"><button type="button" class="btn btn-primary me-2">Sign In</button></a>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="faq-header">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+
+      <!-- Auto-generated from user's questions -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1">Common Questions about vaccination?</button>
+        </h2>
+        <div id="a1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Below are some of the most common questions related to child immunization and vaccination practices in India.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">
+            How do vaccines protect children from disease-causing organisms?
+          </button>
+        </h2>
+        <div id="a2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Vaccines activate the body’s immune response by generating antibodies against specific pathogens. These antibodies then protect children from real infections in the future.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3">
+            At what age should immunization start for any child?
+          </button>
+        </h2>
+        <div id="a3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Immunization starts immediately after birth with vaccines like BCG, OPV, and Hep B. Other vaccines follow as per the National Immunization Schedule.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a4">
+            How much does the vaccination cost?
+          </button>
+        </h2>
+        <div id="a4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            All vaccines under the government immunization program are provided free of cost, including syringes and supplements.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q5">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a5">
+            Where should the parents take their children for vaccination?
+          </button>
+        </h2>
+        <div id="a5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Parents can visit government hospitals, PHCs, CHCs, dispensaries, sub-centres, and Anganwadi centres. ANMs also hold immunization sessions in communities.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q6">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a6">
+            Which vaccines are better – private or government-provided?
+          </button>
+        </h2>
+        <div id="a6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Both are equally safe and effective. Government vaccines are free and sourced from approved, licensed manufacturers, just like private ones.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q7">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a7">
+            Why do private providers offer vaccines not available in government programmes?
+          </button>
+        </h2>
+        <div id="a7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Government focuses on diseases with large public health impact. Private providers may offer additional vaccines upon individual request and payment.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q8">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a8">
+            Since India is polio-free, why is the polio vaccine still given?
+          </button>
+        </h2>
+        <div id="a8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Polio still exists in other countries. To prevent reintroduction, polio vaccines are continued in routine and pulse campaigns until global eradication.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q9">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a9">
+            Why is there pain and swelling at the injection site?
+          </button>
+        </h2>
+        <div id="a9" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Mild redness, pain, or swelling is normal after injectable vaccines. It usually resolves within 1-3 days and is not a sign of a bad reaction.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q10">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a10">
+            What causes fever after vaccination?
+          </button>
+        </h2>
+        <div id="a10" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Mild fever, especially after Pentavalent or DPT, is a natural body reaction. It is self-limiting and subsides within a day or two.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q11">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a11">
+            Can a sick child be vaccinated?
+          </button>
+        </h2>
+        <div id="a11" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, mild illness does not affect vaccination. Children with serious illness should wait until recovery before receiving vaccines.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q12">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a12">
+            What if the vaccine is not available at the health facility?
+          </button>
+        </h2>
+        <div id="a12" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            The child will be given available vaccines, and others will be administered at the next session or at a higher-level facility.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="q13">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a13">
+            Do OPV cause impotency or does MR vaccine cause autism?
+          </button>
+        </h2>
+        <div id="a13" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            No. These are myths. All vaccines in the government program are safe, effective, and tested for quality. They do not cause impotency or autism.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<footer class="bg-primary text-white text-lg-start">
+    <div class="container p-4">
+      <div class="row align-items-center">
+        
+        <!-- Logo (Left) -->
+        <div class="col-lg-3 col-md-12 mb-2 mb-lg-0 text-center text-lg-start">
+          <img src="/image/logo.png" alt="Logo" style="height: 150px;border-radius: 200px; margin-right: -20px;">
+        </div>
+  
+        <!-- Center Content -->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5>Resources for You:</h5>
+          <p>
+            Locate Vaccination Centers<br>
+            Learn About Vaccine Benefits<br>
+            Myths vs. Facts Explained
+          </p>
+          <h5>Join the Movement:</h5>
+          <p>
+            Help us create a healthier world. Spread awareness, encourage vaccination, and protect your community.
+          </p>
+          <h5>Contact Us:</h5>
+          <p>Have questions? Need help? Reach out to us anytime—we’re here to support you!</p>
+        </div>
+  
+        <!-- Follow Us (Right) -->
+        <div class="col-lg-3 col-md-12 text-center text-lg-end">
+          <h5 class="text-uppercase mb-3">Follow Us:</h5>
+          <ul class="list-unstyled d-flex justify-content-center justify-content-lg-end">
+            <li class="ms-3">
+              <a href="https://www.google.com" class="text-white" target="_blank">
+                <i class="fab fa-google fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.facebook.com" class="text-white" target="_blank">
+                <i class="fab fa-facebook fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.twitter.com" class="text-white" target="_blank">
+                <i class="fab fa-twitter fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.youtube.com" class="text-white" target="_blank">
+                <i class="fab fa-youtube fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+  
+      </div>
+    </div>
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2025 Copyright
+    </div>
+  </footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

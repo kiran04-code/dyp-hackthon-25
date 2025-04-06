@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(to right, rgb(133, 167, 240) 0%, rgb(167, 178, 249) 100%);
+
+    }
+    .chat-bubble {
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body class="  min-h-screen flex items-center justify-center p-4">
+<video autoplay muted loop playsinline class="fixed top-0 left-0 w-full h-full object-cover opacity-20 z-0">
+    <source src="https://videos.pexels.com/video-files/8549595/8549595-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Chat Window -->
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl h-[80vh] flex flex-col overflow-hidden relative z-10">
+    
+    <!-- Header -->
+    <header class="bg-white border-b p-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600">Community Chat</h1>
+      <a href="index.html" class="text-blue-500 hover:underline">← Home</a>
+    </header>
+
+    <!-- Chat Messages -->
+    <main id="chatContainer" class="flex-grow overflow-y-auto px-4 py-4 space-y-4"></main>
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span class="text-5xl text-gray-300 font-bold opacity-15 select-none"><img src="/view/logo.png" alt="LifeShield" style="width: 200px;"></span>
+      </div>
+
+    <!-- Message Input -->
+    <section class="border-t p-4 flex items-center gap-2">
+      <input id="messageInput" type="text" placeholder="Type your message..." class="flex-grow p-2 rounded-lg border focus:outline-none focus:ring focus:border-blue-500" />
+      <button onclick="sendMessage()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Send</button>
+    </section>
+  </div>
+
+  <script>
+    const chatContainer = document.getElementById('chatContainer');
+    const messageInput = document.getElementById('messageInput');
+    let messages = [];
+
+    function sendMessage() {
+      const text = messageInput.value.trim();
+      if (!text) return;
+      const msg = {
+        id: Date.now(),
+        text: text,
+        replies: []
+      };
+      messages.push(msg);
+      renderMessages();
+      messageInput.value = '';
+    }
+
+    function renderMessages() {
+      chatContainer.innerHTML = '';
+      messages.forEach((msg, index) => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'bg-white shadow chat-bubble';
+
+        messageDiv.innerHTML = `
+          <p class="text-gray-800">${msg.text}</p>
+          <div class="text-sm text-gray-500 mt-2 cursor-pointer hover:underline inline-block" onclick="toggleReply(${msg.id})">
+            Reply
+          </div>
+          <div class="mt-2 space-y-2" id="replies-${msg.id}">
+            ${msg.replies.map(reply => `<div class="ml-4 p-2 bg-gray-100 rounded text-sm">${reply}</div>`).join('')}
+          </div>
+          <div class="hidden mt-2" id="replyBox-${msg.id}">
+            <input type="text" id="replyInput-${msg.id}" placeholder="Reply..." class="w-full p-2 rounded border mt-1 focus:outline-none focus:ring"/>
+            <button onclick="addReply(${index})" class="mt-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Post</button>
+          </div>
+        `;
+        chatContainer.appendChild(messageDiv);
+      });
+
+      // Scroll to bottom after rendering
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    function toggleReply(id) {
+      const replyBox = document.getElementById(`replyBox-${id}`);
+      replyBox.classList.toggle('hidden');
+    }
+
+    function addReply(index) {
+      const id = messages[index].id;
+      const replyInput = document.getElementById(`replyInput-${id}`);
+      const replyText = replyInput.value.trim();
+      if (!replyText) return;
+      messages[index].replies.push(replyText);
+      renderMessages();
+    }
+  </script>
+
+</body>
+</html>

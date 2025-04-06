@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vaccination</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      background: linear-gradient(to right, rgba(133, 156, 240, 0.674) 0%, rgb(88, 102, 255) 100%);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+  body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+  }
+
+  .toggle-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+  }
+
+  .toggle-button {
+    padding: 0.5rem 1rem;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+    .card{
+      padding: 5px;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+    }
+    .card:hover{
+      transition: transform 0.3s ease;
+      transform: scale(1.02);
+    }
+    .card-body{
+      border-radius: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    .card-img-top{
+      border-radius: 20px;
+    }
+
+    .navbar {
+      background: linear-gradient(to right, rgb(133, 167, 240) 0%, rgb(167, 178, 249) 100%);
+      border-radius: 8px;
+    }
+
+    .navbar-brand {
+      color: rgb(196, 255, 207);
+    }
+
+    .vaxsrc {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      z-index: 10;
+
+    }
+
+    #input1 {
+      flex: 1 1 auto;
+      min-width: 200px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px 0 0 5px;
+      border: 1px solid #ccc;
+    }
+
+    #button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 0 5px 5px 0;
+      border: 1px solid #0d6efd;
+      background-color: #0d6efd;
+      color: white;
+      cursor: pointer;
+      height: 100%;
+      border-left: none;
+    }
+
+    #button:hover {
+      background-color: #0b5ed7;
+    }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      z-index: 1000;
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      border-radius: 0 0 5px 5px;
+    }
+
+    .dropdown-content div {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .dropdown-content div:hover {
+      background-color: #f0f0f0;
+    }
+
+    .card-body img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      .image-content {
+        text-align: center !important;
+        margin-top: 20px;
+      }
+    }
+    #navbar {
+  background: linear-gradient(to right, rgb(0, 38, 120) 0%, rgb(109, 127, 240) 100%);
+  border-radius: 5px;
+  height: 80px;
+}
+
+footer {
+  background: linear-gradient(to right, rgb(0, 38, 120) 0%, rgb(69, 61, 182) 100%);
+}
+
+.navbar-brand {
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.navbar-brand:hover {
+  transform: scale(1.03);
+}
+
+.nav-item {
+  border-radius: 20px;
+  transition: all 0.2s ease; /* Added to apply out animation */
+}
+
+.nav-item:hover {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%, rgba(243, 234, 255, 0.274) 100%);
+  transform: scale(1.01);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.btn:hover{
+  transition: all 0.2s ease; /* Added to apply out animation */
+  transform: scale(1.01);
+}
+.footer {
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo img {
+  height: 50px;
+}
+
+.footer-social {
+  text-align: right;
+}
+
+.social-icons a img {
+  height: 24px;
+  margin-left: 10px;
+}
+#community-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  
+}
+#community-icon:hover {
+  transform: scale(1.1);
+}
+#loader{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all ease 1s;
+}
+#loader h1{
+   color: transparent;
+   font-family: futura;
+   opacity: 0;
+   font-size: 4vw;
+   background: linear-gradient(to right, #1552F0, #4d8eff);
+   -webkit-background-clip: text;
+   position: absolute;
+   animation-name: loder;
+    animation-duration: 1s;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+   
+}
+#loader h1:nth-child(2){
+    animation-delay: 2s;
+}
+#loader h1:nth-child(3){
+    animation-delay: 3s;
+}
+
+@keyframes loder {
+    0%{
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+.kiran {
+  width: 80%;
+  height: 50px;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  margin-top: 20px;
+color: blue;
+font-family: poppins  Medium;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+span{
+  margin-left: 10px;
+}
+
+.sec{
+  width: 100%;
+  height: 70px;
+  border: 2px solid rgb(0, 0, 0);
+
+  display: flex;
+  margin-top: 20px;
+}
+.left{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  gap: 1px;
+}
+h2{
+  font-size: 16px;
+}
+a{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+.right{
+  height: 100%;
+  width: 50%;
+  display: flex;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.h1doc h1{
+  font-family: futura;
+  text-align: center; 
+  color: #fff;
+  font-size:22px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/* h1{
+  font-family: futura;
+  text-align: center;
+  color: #ffffff;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+} */
+ .vaxsrc h2{
+  font-family: futura;
+  text-align: center; 
+  color: #12054d;
+  font-size:17px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+ }
+  </style>
+</head>
+
+<body>
+  <!-- <div id="loader">
+    <h1>HEALTHY</h1>
+           
+    <h1>STRONG</h1>
+          
+    <h1>READY</h1>
+          
+   </div> -->
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+    <div class="container-fluid">
+      <img src="/image/logo.png" alt="logo" style="width: 60px; height: 60px; border-radius: 100px;" />
+      <a class="navbar-brand ms-3" href="/">Life Shield</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/map">Locate Vaccination Centre</a></li>
+          <li class="nav-item"><a class="nav-link" href="/fa&q">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+         
+        </ul>
+        <form class="d-flex">
+
+          <a href="/signup"><button type="button" class="btn btn-success" style="margin-right: 10px;">Register</button>
+          </a>
+          <a href="/signin"><button type="button" class="btn btn-primary">Sign In</button>
+          </a>
+          <% if (locals.user) { %>
+            <a href="/profile"> <button type="button" class="btn btn-primary btn-lg" style="margin-left: 10px;margin-top: -10px; background-color: rgb(97, 42, 165);">Profile</button></a>
+        <% } %>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Card -->
+  <div class="container mt-4">
+    <div class="card p-3">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <div class="text-content col-md-7 mb-3">
+          <h1><span style="color: rgb(75, 147, 242);">One </span>small shot for you, one giant leap for community health.</h1>
+          <p><strong>"Your Health, Your Responsibility: Stay Updated with Vaccination Tracker"<br>"Track, Protect, and Empower Yourself—Ensure You're Up-to-Date on Your Vaccines!"</strong></p>
+          <!-- <h4 class="mt-3">Large Number of Children 6–15 Still <span style="color: red;">Unvaccinated!</span></h4> -->
+          <div class="kiran">Large Number of Children 6-15 Still Unvaccinated <span id="num2"> </span></div>
+        </div>
+        <div class="image-content col-md-4 text-center">
+          <img src="/image/file.png" class="img-fluid rounded" alt="Vaccination Image" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Floating Community Icon in Top Right -->
+<% if (locals.user) { %>
+  <div style="position: fixed; top: 70px; right: 16px; z-index: 50;">
+    <a href="/community"><img src="/image/community.png" 
+          alt="community chat" 
+          style="border-radius: 9999px; height: 80px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.397);" id="community-icon"></a> 
+  </div>
+<% } %>
+  <!-- Carousel -->
+  <div class="container mt-5">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner rounded-4 overflow-hidden">
+        <div class="carousel-item active">
+          <video class="d-block w-100" autoplay muted loop playsinline style="object-fit: cover; height: 60vh;">
+            <source src="https://videos.pexels.com/video-files/5809598/5809598-hd_1920_1080_24fps.mp4" type="video/mp4" />
+          </video>
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+            <h5>How Vaccines Work</h5>
+            <p>Vaccines train the immune system to recognize and fight harmful viruses.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <video class="d-block w-100" autoplay muted loop playsinline style="object-fit: cover; height: 60vh;">
+            <source src="https://videos.pexels.com/video-files/4121322/4121322-uhd_2560_1440_25fps.mp4" type="video/mp4"/>
+          </video>
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+            <h5>How Vaccines Are Created</h5>
+            <p>Scientists identify virus parts that trigger immunity and produce safe vaccines.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <video class="d-block w-100" autoplay muted loop playsinline style="object-fit: cover; height: 60vh;">
+            <source src="https://videos.pexels.com/video-files/7710243/7710243-uhd_2560_1440_30fps.mp4" type="video/mp4"/>
+          </video>
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+            <h5>How Viruses Harm Us</h5>
+            <p>Viruses hijack cells to replicate and destroy tissue.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Info Cards -->
+  <div class="container mt-5">
+    <div class="row g-4">
+      <div class="col-12 col-md-6" style="margin-right: -20px;">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4>Why vaccines are Important?</h4>
+            <p class="card-text">Vaccines are not just important they are the very reason humanity has survived and thrived in the face of pandemics, plagues, and deadly diseases for centuries. In a world where misinformation spreads at the speed of a tweet, and fear-mongering has replaced scientific fact, refusing to vaccinate is not only a personal choice; it is a reckless act of negligence with profound consequences for public health. The denial of science the refusal to accept the overwhelming, irrefutable evidence that vaccines are safe and effective is not just dangerous; it’s criminal. If you still doubt the power of vaccines, it’s time to confront the harsh reality: your skepticism doesn’t just harm you it harms everyone. Vaccines don’t just protect the individual who gets vaccinated, they protect entire communities through a concept called herd immunity. So, let's be blunt: if you are still questioning the power of vaccines, you are choosing ignorance over science, selfishness over responsibility, and risk over safety. And the next time you think about questioning the safety of vaccines, ask yourself: who are you really putting at risk? Because the truth is, your refusal could be the very thing that sparks the next outbreak</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <img src="/image/image1.jpg" alt="Info Image 1" class="img-fluid rounded"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <img src="/image/image2.svg" alt="Info Image 2" class="img-fluid rounded"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6" style="margin-left: -20px;">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4>Myths and facts:</h4>
+            <p class="card-text">Vaccines are often surrounded by wild stories, but the truth is simple and reassuring. For example some people believe vaccines cause autism. This fear started from one fake study that was proven wrong years ago. Even though scientists have shown there’s no link, the myth still floats around. Then there’s the idea that falling sick naturally is better than taking a vaccine. But why would you want to suffer through a dangerous disease when vaccines can protect you without the pain? Vaccines are like a safety net for your health, ready to catch you before you fall. And the strangest myth of all? That vaccines contain microchips to track people. That’s complete nonsense! Vaccines don’t have secret devices they’re just tools to protect lives and keep your immune system strong. What’s even more amazing is that vaccines don’t just protect you. They protect your loved ones, your neighbors, and even strangers. It’s like creating a protective circle around everyone. So, in a world full of myths, let’s stick to the facts: vaccines are safe, effective, and they save lives</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-5">
+    <div class="row g-4">
+      <div class="col-12 col-md-6" style="margin-right: -20px;">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4>Current Affairs : </h4>
+            <p class="card-text">India’s vaccination story in 2023 is a mix of challenges and hope. Over 1.6 million children missed important vaccines like DPT and measles, and another 2 million didn’t get a single vaccine—these kids are called “zero-dose” children. Behind these numbers are families who want their children to grow up healthy but haven’t had the chance to get them vaccinated. he good news is that efforts like Mission Indradhanush and its newer version, IMI 5.0, are changing the story. These programs have already helped vaccinate millions of children. It’s not just about giving vaccines; it’s about giving every child a fair chance at life. Vaccination is more than just a health drive—it’s about hope and a promise for a better future. By making vaccines available and spreading awareness, we can ensure every child, no matter where they are, gets the protection they need. Together, we can build a healthier, happier India where no child is left behind.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <img src="https://familypaths.org/wp-content/uploads/2021/03/vtf-icon-vaccine-mask-soap-distance.png" alt="Info Image 1" class="img-fluid rounded" style="height: 380px;"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <img src="https://static.vecteezy.com/system/resources/previews/034/052/606/original/crying-little-girl-is-afraid-of-injections-and-closes-eyes-during-injection-in-shoulder-png.png" alt="Info Image 2" class="img-fluid rounded" style="height: 400px;"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6" style="margin-left: -20px;">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4>Negligence of vaccines in INDIA:</h4>
+            <p class="card-text">Vaccine negligence in India is a ticking time bomb, and its consequences are deadly. Despite the proven safety and effectiveness of vaccines, rising misinformation and lack of awareness are causing more people to refuse or delay immunization, putting everyone at risk. When vaccination rates drop, diseases like polio and measles can return, putting vulnerable populations— children, the elderly, and the immunocompromised—at severe risk. This isn’t just a personal choice; it’s a public health threat. Our communities, our children, our future—all are at stake. It's time to stop ignoring the science, fight back against myths, and make sure every person gets vaccinated. The cost of negligence is too high, and we cannot afford to lose the progress we’ve made. Vaccines save lives—don’t let fear and ignorance take them away.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <div class="h1doc"><h1>Vaccination Schedule: Government & Non-Government Hospitals</h1></div>
+<div class="sec">
+  <div class="left">
+    <h2>Government Vaccination Schedule by Age Group</h2>
+<div class="doc"><a href="/image/dowload.jpg" download="dowload.jpg">Dowload.Pdf </a> <i class="fa-solid fa-file-pdf" style="color: #ff0404;"></i></div>
+  </div>
+  <div class="right">
+    <h2>Vaccination Schedule for Non-Government Hospitals</h2>
+    <div class="doc"><a href="/image/Simplified_Immunisation_Schedule.pdf" download="Simplified_Immunisation_Schedule.pdf">Dowload.Pdf </a> <i class="fa-solid fa-file-pdf" style="color: #ff0303;"></i></div>
+  </div>
+</div> -->
+ <div class="h1doc"><h1>Vaccination Schedule: Government & Non-Government Hospitals</h1></div>
+<div class="container mt-5">
+  <div class="row">
+    
+    <!-- Government Vaccination Schedule -->
+
+    <div class="col-md-6 mb-4">
+      <div class="card shadow p-3">
+        <h4 class="card-title">Government Vaccination Schedule by Age Group</h4>
+        <a href="/image/dowload.jpg" download="dowload.jpg" class="btn btn-danger mt-3">
+          <i class="fas fa-file-pdf me-2"></i>Download PDF
+        </a>
+      </div>
+    </div>
+
+    <!-- Non-Government Vaccination Schedule -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow p-3">
+        <h4 class="card-title">Vaccination Schedule for Non-Government Hospitals</h4>
+        <a href="/image/Simplified_Immunisation_Schedule.pdf" download="Simplified_Immunisation_Schedule.pdf" class="btn btn-danger mt-3">
+          <i class="fas fa-file-pdf me-2"></i>Download PDF
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+  <!-- Search Section -->
+  <div class="vaxsrc container mt-5">
+    <h2>Here are a few essential vaccines:</h2>
+    <div class="search-container mt-3">
+      <input id="input1" type="text" placeholder="Search vaccine" oninput="filterDropdown()" onclick="toggleDropdown()" autocomplete="off">
+      <button id="button" onclick="searchVaccine()">Search</button>
+      <div id="dropdown2" class="dropdown-content">
+        <div onclick="selectOption('dptw')">dptw</div>
+        <div onclick="selectOption('influenza')">influenza</div>
+        <div onclick="selectOption('mmr')">mmr</div>
+        <div onclick="selectOption('polio')">polio</div>
+        <div onclick="selectOption('hpv')">hpv</div>
+        <div onclick="selectOption('cervical cancer')">cervical cancer</div>
+        <div onclick="selectOption('dap/td')">dap/td</div>
+        <div onclick="selectOption('Rotavirusvaccine')">Rotavirusvaccine</div>
+        <div onclick="selectOption('Haemophilus')">Haemophilus, vaccine</div>
+        <div onclick="selectOption('Pneumococcal')">Pneumococcal vaccine</div>
+        <div onclick="selectOption('Rubella')">Rubella</div>
+        <div onclick="selectOption('Varicella')">Varicella vaccine</div>
+        <div onclick="selectOption('MMR')">MMR Vaccine (Measles, Mumps, and Rubella)</div>
+        <div onclick="selectOption('BCG Vaccine')">BCG Vaccine</div>
+        <div onclick="selectOption('OPV')">OPV Vaccine</div>
+      </div>
+    </div>
+  </div>
+
+<!-- cards vaccine -->
+<div class="container my-5">
+  <div class="row g-4">
+    <!-- Card 1 -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow rounded-4">
+        <img src="https://th.bing.com/th/id/OIP.GjpV53xmxmEoUmTndjWDgQHaFS?rs=1&pid=ImgDetMain" class="card-img-top rounded-top-4" alt="Influenza Vaccine">
+        <div class="card-body">
+          <h5 class="card-title">Influenza Vaccine</h5>
+          <p class="card-text">Protects against the flu by reducing the risk of illness and complications. Updated yearly to match flu strains.</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <a href="/influ"><button type="button" class="btn btn-primary">Learn More</button></a> 
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow rounded-4">
+        <img src="https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2024/04/1200/675/dtap-vaccine.jpg?ve=1&tl=1" class="card-img-top rounded-top-4" alt="DTaP Vaccine">
+        <div class="card-body">
+          <h5 class="card-title">DTaP Vaccine</h5>
+          <p class="card-text">Protects against diphtheria, tetanus, and pertussis. Essential for childhood immunization and preventing severe complications.</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+         <a href="/DTaP"><button type="button" class="btn btn-info">Learn More</button></a> 
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow rounded-4">
+        <img src="https://th.bing.com/th/id/OIP.GdMUBdmNAgfQCQX7XAqf5QHaE8?rs=1&pid=ImgDetMain" class="card-img-top rounded-top-4" alt="Card image">
+        <div class="card-body">
+          <h5 class="card-title">Hepatitis B Vaccine</h5>
+          <p class="card-text">Prevents hepatitis B infection, which can lead to chronic liver disease and liver cancer. Typically given in infancy.</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <a href="/hepatitis"><button type="button" class="btn btn-primary">Learn More</button></a> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-4">
+    <!-- Card 4 -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow rounded-4">
+        <img src="https://ichef.bbci.co.uk/news/976/cpsprodpb/02A4/production/_102667600_hpv_vaccine_alamy.jpg" class="card-img-top rounded-top-4" alt="HPV Vaccine">
+        <div class="card-body">
+          <h5 class="card-title">HPV Vaccine</h5>
+          <p class="card-text">Helps protect against human papillomavirus, which can cause cervical and other cancers. Recommended before sexual activity begins.</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <a href="/hpv"><button type="button" class="btn btn-primary">Learn More</button></a> 
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow rounded-4">
+        <img src="https://th.bing.com/th/id/OIP.6JwQQdtOHPzwfRz9ihJbPQAAAA?rs=1&pid=ImgDetMain" class="card-img-top rounded-top-4" alt="Polio Vaccine">
+        <div class="card-body">
+          <h5 class="card-title">Polio Vaccine</h5>
+          <p class="card-text">Protects against poliovirus, which can cause paralysis. Widely used in global eradication campaigns.</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <a href="/polio"><button type="button" class="btn btn-info">Learn More</button></a> 
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="col-md-4">
+      <div class="card h-100 shadow rounded-4">
+        <img src="https://assets.publishing.service.gov.uk/media/5dbc5f51ed915d1d001e60d4/mmr-vaccine.jpg" class="card-img-top rounded-top-4" alt="MMR Vaccine">
+        <div class="card-body">
+          <h5 class="card-title">MMR Vaccine</h5>
+          <p class="card-text">Provides immunity against measles, mumps, and rubella. An important part of routine childhood immunization.</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0">
+          <a href="/mmr"><button type="button" class="btn btn-primary">Learn More</button></a> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row g-4 justify-content-center" style="margin: auto;">
+  <div class="col-12 col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <img src="https://www.iproov.com/wp-content/uploads/2021/04/vaccine-header-image.png" alt="Info Image 2" class="img-fluid rounded"/>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h4>Share Your Vaccination Status : </h4>
+        <p class="card-text">We encourage everyone to share their vaccination status with us to help create a healthier and more informed community. By sharing this information, you're actively contributing to transparency and a collective sense of safety. Your openness can inspire others and plays a vital role in supporting public health efforts. Together, we can foster a stronger, more protected environment for everyone! Thank you for taking this important step.
+
+        </p>
+        <a href="/survey"><button type="button" class="btn btn-primary">Share Your Vaccination Status</button></a> 
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <br> <br>
+  <footer class="bg-primary text-white text-lg-start">
+    <div class="container p-4">
+      <div class="row align-items-center">
+        
+        <!-- Logo (Left) -->
+        <div class="col-lg-3 col-md-12 mb-2 mb-lg-0 text-center text-lg-start">
+          <img src="/image/logo.png" alt="Logo" style="height: 150px;border-radius: 200px; margin-right: -20px;">
+        </div>
+        <!-- Center Content -->
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+          <h5>Resources for You:</h5>
+          <p>
+            Locate Vaccination Centers<br>
+            Learn About Vaccine Benefits<br>
+            Myths vs. Facts Explained
+          </p>
+          <h5>Join the Movement:</h5>
+          <p>
+            Help us create a healthier world. Spread awareness, encourage vaccination, and protect your community.
+          </p>
+          <h5>Contact Us:</h5>
+          <p>Have questions? Need help? Reach out to us anytime—we’re here to support you!</p>
+        </div>
+  
+        <!-- Follow Us (Right) -->
+        <div class="col-lg-3 col-md-12 text-center text-lg-end">
+          <h5 class="text-uppercase mb-3">Follow Us:</h5>
+          <ul class="list-unstyled d-flex justify-content-center justify-content-lg-end">
+            <li class="ms-3">
+              <a href="https://www.google.com" class="text-white" target="_blank">
+                <i class="fab fa-google fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.facebook.com" class="text-white" target="_blank">
+                <i class="fab fa-facebook fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.twitter.com" class="text-white" target="_blank">
+                <i class="fab fa-twitter fa-lg"></i>
+              </a>
+            </li>
+            <li class="ms-3">
+              <a href="https://www.youtube.com" class="text-white" target="_blank">
+                <i class="fab fa-youtube fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+  
+      </div>
+    </div>
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2025 Copyright
+    </div>
+  </footer>
+  
+
+  <!-- Scripts -->
+  <script>
+setTimeout(function(){
+    const loader= document.getElementById("loader")
+    loader.style.top ="-100%"
+},3700)
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const videos = document.querySelectorAll("#carouselExampleCaptions video");
+      videos.forEach(video => video.play().catch(err => console.warn("Autoplay failed:", err)));
+      document.querySelector('#carouselExampleCaptions').addEventListener('slid.bs.carousel', () => {
+        videos.forEach(video => video.play().catch(() => {}));
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function showPopup() {
+        var popup = document.getElementById('popup');
+        popup.style.display = 'block';
+        setTimeout(function() {
+            popup.style.display = 'none';
+        }, 3000);
+    }
+</script>
+<script>
+  const input = document.getElementById("input1");
+  const dropdown = document.getElementById("dropdown2");
+
+  function toggleDropdown() {
+    dropdown.style.display = "block";
+  }
+
+  function filterDropdown() {
+    const filter = input.value.toLowerCase();
+    const options = dropdown.getElementsByTagName("div");
+
+    for (let i = 0; i < options.length; i++) {
+      const txt = options[i].textContent || options[i].innerText;
+      if (txt.toLowerCase().indexOf(filter) > -1) {
+        options[i].style.display = "";
+      } else {
+        options[i].style.display = "none";
+      }
+    }
+  }
+
+  function selectOption(value) {
+    input.value = value;
+    dropdown.style.display = "none";
+  }
+
+  function searchVaccine() {
+    const value = input.value;
+    alert("Searching for: " + value);
+    // Add your actual search logic here
+    dropdown.style.display = "none";
+  }
+
+  // Hide dropdown when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!document.getElementById("input1").contains(e.target) &&
+        !dropdown.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+  
+</script>
+<script>
+  const button = document.getElementById("button")
+const input1 =  document.getElementById("input1") 
+button.addEventListener("click" , function(){
+    const val = input1.value
+    input1.value=""
+    if( val == "dptw" ){
+        window.location.href= "DTaP"
+        console.log(val)
+        return true
+    }
+    if( val == "mmr" ){
+        window.location.href= "mmr"
+        console.log(val)
+        return true
+    }
+    if( val == "influenza" ){
+        window.location.href= "influ"
+        console.log(val)
+        return true
+    }
+    if( val == "polio" ){
+        window.location.href= "polio"
+        console.log(val)
+        return true
+    }
+    if( val == "hepatitis" ){
+        window.location.href= "hepatitis"
+        console.log(val)
+        return true
+    }
+    if( val == "hpv" ){
+        window.location.href= "hpv"
+        console.log(val)
+        return true
+    }
+    if( val == "Rotavirusvaccine" ){
+        window.location.href= "Rotavirusvaccine .html"
+        console.log(val)
+        return true
+    }
+    if( val == "Haemophilus" ){
+        window.location.href= "Haemophilus.html"
+        console.log(val)
+        return true
+    }
+    if( val == "Pneumococcal" ){
+        window.location.href= "Pneumococcal.html"
+        console.log(val)
+        return true
+    }
+    if( val == "Rubella" ){
+        window.location.href= "Rubella.html"
+        console.log(val)
+        return true
+    }
+    if( val == "Varicella" ){
+        window.location.href= "Varicella.html"
+        console.log(val)
+        return true
+    }
+    if( val == "MMR" ){
+        window.location.href= "MMR.html"
+        console.log(val)
+        return true
+    }
+    if( val == "BCG Vaccine" ){
+        window.location.href= "BCG.html"
+        console.log(val)
+        return true
+    }
+    if( val == "OPV" ){
+        window.location.href= "OPV.html"
+        console.log(val)
+        return true
+    }
+})
+let numberElement2 = document.getElementById('num2'); // Get the element to display the number
+let currentNumber2 = 0  
+
+function startIncrement2() {
+ let interval =    setInterval(function() {
+        currentNumber2++;  
+      numberElement2.innerText= "+" +currentNumber2;
+        if(currentNumber2 === 3892){
+            clearInterval(interval)
+        }
+    }, 100);  
+}
+startIncrement2()
+</script>
+
+</body>
+</html>

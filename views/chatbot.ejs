@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dr. AI Chatbot</title>
+    <style>
+        iframe {
+            border: none;
+            width: 100%;
+            height: 90vh;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <form id="chatForm" action="/chatbot" method="post">
+          <input type="text" id="userPrompt" placeholder="Ask Dr. AI..." name="userPrompt" />
+          <button type="submit">Send</button>
+        </form>
+        <div id="botReply"></div>
+      </div>
+      
+      <script>
+        const chatForm = document.getElementById('chatForm');
+      
+        chatForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const prompt = document.getElementById('userPrompt').value;
+      
+          const res = await fetch('/chatbot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt })
+          });
+      
+          const data = await res.json();
+          document.getElementById('botReply').innerText = "🤖 " + data.botReply;
+        });
+      </script> 
+    
+</body>
+</html>
