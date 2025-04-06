@@ -31,7 +31,7 @@ connectDB(process.env.MONGO_URI).then(() => {
 app.get("/",(req,res)=>{
     res.render("index",{user:req.user})
 })
-app.get('/Community', async (req, res) => {
+app.get('/community', async (req, res) => {
     const result = await chat.find({})
         .populate('createdBy', '  UserName') // Populate 'name' field from user
         .sort({ createdAt: 1 });
