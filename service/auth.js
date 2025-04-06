@@ -1,3 +1,4 @@
+
 const JWT = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 function cratetoken(user){
@@ -7,11 +8,11 @@ function cratetoken(user){
         Number:user.Number,
         UserName:user.UserName
     }
-    const token = JWT.sign(payload,scret)
+    const token = JWT.sign(payload,secret)
     return token
 }
 function validation(token){
-    const pyload = JWT.verify(token,scret)
+    const pyload = JWT.verify(token,secret)
     return pyload
 }
 

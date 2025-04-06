@@ -126,7 +126,6 @@ routes.post("/signin", async (req, res) => {
     try {
         const { email, password } = req.body
         const token = await user.matchthetoken(email, password)
-
         return res.cookie("token", token).redirect('/')
     } catch (error) {
         return res.render('signin', { error: "Incorrect Password!" })
