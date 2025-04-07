@@ -36,7 +36,7 @@ app.get('/communityy', async (req, res) => {
         .populate('createdBy', '  UserName') // Populate 'name' field from user
         .sort({ createdAt: 1 });
     console.log(result)
-    res.render('community', { result, user: req.user });
+    res.render('communityy', { result, user: req.user });
 });
 app.use('/',router)
 app.use('/',routers)

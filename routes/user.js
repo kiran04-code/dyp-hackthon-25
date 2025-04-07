@@ -17,9 +17,15 @@ routes.get('/signup', (req, res) => {
 routes.get('/signin', (req, res) => {
     res.render('signin')
 })
-routes.get('/communityy', (req, res) => {
-    res.render('Community')
-})
+routes.get('/communityy', async (req, res) => {
+  try {
+    // your logic
+    res.render('communityy');
+  } catch (err) {
+    console.error('Route error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
 routes.get('/DTaP', (req, res) => {
     res.render('DTaP')
 })
