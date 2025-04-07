@@ -4,14 +4,14 @@ const routers = express.Router()
 
 const chat = require('../model/chat')
 
-routers.post('/community', async (req, res) => {
+routers.post('/communityy', async (req, res) => {
     const { message } = req.body
     console.log(message)
     await chat.create({
         message,
         createdBy: req.user._id
     })
-    res.redirect('/community')
+    res.redirect('/communityy')
 })
 
 module.exports = routers

@@ -17,7 +17,7 @@ routes.get('/signup', (req, res) => {
 routes.get('/signin', (req, res) => {
     res.render('signin')
 })
-routes.get('/Community', (req, res) => {
+routes.get('/communityy', (req, res) => {
     res.render('Community')
 })
 routes.get('/DTaP', (req, res) => {
