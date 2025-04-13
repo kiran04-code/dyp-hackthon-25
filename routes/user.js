@@ -10,12 +10,11 @@ require('dotenv').config()
 
 
 routes.get('/signup', (req, res) => {
-    res.render('signup')
+    res.render('signup2')
 })
 
-
 routes.get('/signin', (req, res) => {
-    res.render('signin')
+    res.render('signin2')
 })
 routes.get('/communityy', async (req, res) => {
   try {
@@ -57,12 +56,17 @@ routes.get('/fa&q', (req, res) => {
     res.render('fa&q')
 })
 
-
 routes.get('/profile', (req, res) => {
     res.render('profile', { user: req.user })
 })
 routes.get('/about', (req, res) => {
     res.render('about', { user: req.user })
+})
+routes.get('/profile/:id', async(req, res) => {
+  const userID = req.params.id
+  await user.findByIdAndDelete(userID)
+  res.clearCookie("token").redirect("/")
+   
 })
 
 
@@ -79,6 +83,7 @@ routes.post("/signup", async (req, res) => {
      })
  
      console.log(result)
+
  
      // === Send Email ===
      const transporter = nodemailer.createTransport({
@@ -120,11 +125,11 @@ routes.post("/signup", async (req, res) => {
  
      console.log('SMS sent successfully.')
  
-     return res.redirect('/')
+     return res.render('signin2')
  
    } catch (error) {
      console.error('Signup error:', error)
-     return res.render('signup', { error: "Email is not unique or something went wrong." })
+     return res.render('signup2', { error: "Email is not unique or something went wrong." })
    }
  })
 // Signin POST route
@@ -134,7 +139,7 @@ routes.post("/signin", async (req, res) => {
         const token = await user.matchthetoken(email, password)
         return res.cookie("token", token).redirect('/')
     } catch (error) {
-        return res.render('signin', { error: "Incorrect Password!" })
+        return res.render('signin2', { error: "Incorrect Password!" })
     }
 })
 
@@ -142,5 +147,25 @@ routes.post("/signin", async (req, res) => {
 routes.get('/logout', (req, res) => {
     res.clearCookie("token").redirect('/')
 })
+routes.get('/profile/edite/:id', async(req, res) => {
+  const userid = req.params.id
+  const userz =  await user.findById(userid)
+  res.render("edit",{users:userz})
+   
+})
+routes.post("/profile/edit/:id",async (req,res)=>{
+  const userId = req.params.id;
+  console.log(req.body) 
+  await user.findByIdAndUpdate(
+    { _id: userId },
+    {
+      UserName: req.body.UserName.trim(), // just in case
+      email: req.body.email.trim()
+    }
+  );
 
+ 
+  res.clearCookie("token").redirect("/signin")
+
+})
 module.exports = routes
