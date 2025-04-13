@@ -163,8 +163,6 @@ routes.post("/profile/edit/:id",async (req,res)=>{
       email: req.body.email.trim()
     }
   );
-
- 
   res.clearCookie("token").redirect("/signin")
 
 })
