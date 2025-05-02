@@ -245,36 +245,67 @@ small{
 		<div class="col-12 col-md-8 col-lg-6 col-xl-5">
 		  <div class="card shadow p-4">
 			<h3 class="text-center mb-4">Create Account</h3>
-			<form  action="/signup" method="post" class="myform">
-			  <div class="mb-3">
-				<input type="text" class="form-control" placeholder="UserName"  name="UserName">
-			  </div>
-			  <div class="mb-3">
-				<input type="email" class="form-control" placeholder="Email"  name="email">
-			  </div>
-			  <div class="mb-3">
-				<input type="password" class="form-control" placeholder="Password"  name="password">
-			  </div>
-			  <div class="mb-3">
-				<input type="text" class="form-control" placeholder="Mobile Number"  name="Number">
-			  </div>
-			  <div class="mb-3">
-				<input type="number" class="form-control" placeholder="Age" required name="age">
-			  </div>
-			  <div class="text-center">
-				<a href="/view/login.html" class="bn">Already Have an Account?</a>
-			  </div>
-			  <div class="d-grid mt-4">
-				<button type="submit" class="btn btn-primary btn-lg">
-				  <i class="far fa-user me-2"></i>SIGN UP
-				</button>
-			  </div>
-			  <% if (locals.error) { %>
+			<form action="/signup" method="post" class="myform">
+				<div class="mb-3">
+				  <input type="text" class="form-control" placeholder="UserName" name="UserName">
+				</div>
+			  
+				<div class="mb-3">
+				  <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+				</div>
+			  
+				<!-- Get OTP Button -->
+				<div class="mb-3 text-end">
+				  <button type="button" class="btn btn-secondary" onclick="sendOTP()">Get OTP</button>
+				</div>
+			  
+				<!-- OTP input field (always visible now) -->
+				<div class="mb-3">
+				  <input type="text" class="form-control" placeholder="Enter OTP" name="otp">
+				</div>
+			  
+				<div class="mb-3">
+				  <input type="password" class="form-control" placeholder="Password" name="password">
+				</div>
+			  
+				<div class="mb-3">
+				  <input type="text" class="form-control" placeholder="Mobile Number" name="Number">
+				</div>
+			  
+				<div class="mb-3">
+				  <input type="number" class="form-control" placeholder="Age" required name="age">
+				</div>
+			  
+				<div class="text-center">
+				  <a href="/view/login.html" class="bn">Already Have an Account?</a>
+				</div>
+			  
+				<div class="d-grid mt-4">
+				  <button type="submit" class="btn btn-primary btn-lg">
+					<i class="far fa-user me-2"></i>SIGN UP
+				  </button>
+				</div>
+			  
+				<% if (locals.error) { %>
 				<div class="alert alert-danger" role="alert">
 				  <%= locals.error %>
 				</div>
 				<% } %>
-			</form>
+			  </form>
+			  
+			  <script>
+				function sendOTP() {
+				  const email = document.getElementById("email").value;
+				  if (!email) {
+					alert("Please enter your email first.");
+					return;
+				  }
+			  
+				  // Call your backend here to send the OTP to the email
+				  alert("OTP sent to " + email);
+				}
+			  </script>
+			  
 		  </div>
 		</div>
 	  </div>

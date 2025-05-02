@@ -29,6 +29,7 @@
       width: 100%;
       box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.05);
       text-align: center;
+      position: relative;
     }
 
     .profile-img {
@@ -65,13 +66,13 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 16px;
-      width: 25%;
+      width: 60%;
       transition: 0.3s ease;
-      margin-top: 25px;
+      margin: 5px auto;
     }
 
     .logout-btn:hover {
-      background-color: rgb(24, 51, 190);
+      transform: scale(1.02);
     }
 
     .navbar {
@@ -139,6 +140,28 @@
     #community-icon:hover {
       transform: scale(1.1);
     }
+
+    #settings-icon {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: #555;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .rotated {
+      transform: rotate(90deg);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #settings-actions {
+      animation: fadeIn 0.3s ease;
+    }
   </style>
 </head>
 
@@ -169,25 +192,38 @@
   <!-- Profile Section -->
   <div class="main-content">
     <div class="profile-card">
+      <!-- Settings Icon -->
+      <i class="fa-solid fa-gear fa-lg" id="settings-icon"></i>
+
       <div class="profile-img"><i class="fa-regular fa-user"></i></div>
       <div class="user-name">Welcome, <%= user.UserName %></div>
       <div class="user-info"><i class="fa-solid fa-envelope me-2"></i><%= user.email %></div>
       <div class="user-info"><i class="fa-solid fa-phone me-2"></i><%= user.Number %></div>
-      <a href="/logout"><button id = 'logout-form'  class="logout-btn"    onclick="return confirm('Are you sure you want to log out?')" style="background-color: rgb(255, 65, 44); font-size:11px"><i class="fa-solid fa-right-from-bracket me-2" ></i>Logout</button></a>
-      <a href="/profile/edite/<%=user._id  %>"><button id = 'logout-form'  class="logout-btn"     style="background-color: rgb(13, 106, 18); font-size:11px"  onclick="return confirm('Are you sure to Edite Your credentials ')">Edit</button></a>
-      <a href="/profile/<%= user._id %>">
-        <button
-          id="logout-form"
-          class="logout-btn"
-          style="background-color: rgb(255, 39, 39); font-size:11px"
-          onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.')"
-        >
-          Delete Account
-        </button>
-      </a>
-      
+
+      <!-- Hidden Buttons -->
+      <div id="settings-actions" style="display: none;">
+        <a href="/logout">
+          <button class="logout-btn" style="background-color: rgb(255, 65, 44); font-size:11px"
+            onclick="return confirm('Are you sure you want to log out?')">
+            <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+          </button>
+        </a>
+        <a href="/profile/edite/<%= user._id %>">
+          <button class="logout-btn" style="background-color: rgb(13, 106, 18); font-size:11px"
+            onclick="return confirm('Are you sure to Edit your credentials?')">
+            <i class="fa-solid fa-pen me-2"></i>Edit
+          </button>
+        </a>
+        <a href="/profile/<%= user._id %>">
+          <button class="logout-btn" style="background-color: rgb(255, 39, 39); font-size:11px"
+            onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.')">
+            <i class="fa-solid fa-trash me-2"></i>Delete Account
+          </button>
+        </a>
+      </div>
     </div>
   </div>
+
   <!-- Footer -->
   <footer class="bg-primary text-white text-lg-start">
     <div class="container p-4">
@@ -222,14 +258,16 @@
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">© 2025 Copyright</div>
   </footer>
+
+  <!-- Toggle Settings Button Script -->
   <script>
-    const logoutForm = document.getElementById('logout-form');
-    console.log(logoutForm)
-    logoutForm.addEventListener('submit', function(e) {
-      const confirmLogout = confirm('Are you sure you want to log out?');
-      if (!confirmLogout) {
-        e.preventDefault();
-      }
+    const settingsIcon = document.getElementById('settings-icon');
+    const settingsActions = document.getElementById('settings-actions');
+
+    settingsIcon.addEventListener('click', () => {
+      const isVisible = settingsActions.style.display === 'block';
+      settingsActions.style.display = isVisible ? 'none' : 'block';
+      settingsIcon.classList.toggle('rotated');
     });
   </script>
 </body>

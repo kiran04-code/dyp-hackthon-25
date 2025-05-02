@@ -18,9 +18,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(chekauth('token'))
 
-
-console.log("MONGO_URI:", process.env.MONGO_URI);
-
 connectDB(process.env.MONGO_URI).then(() => {
     console.log("DB Connected!");
   }).catch((err) => {
@@ -41,5 +38,5 @@ app.get('/communityy', async (req, res) => {
 app.use('/',router)
 app.use('/',routers)
 app.listen(port,(req,res)=>{
-    console.log(`Server is Runing ON Port ${port}`)
+    console.log(`Server is Runing ON Port http://localhost:${port}`)
 })

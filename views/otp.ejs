@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verify OTP</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="h-screen flex bg-black text-white">
+
+  <!-- OTP Form on the Left -->
+  <div class="w-full lg:w-1/2 flex items-center justify-center p-8 order-2 lg:order-1">
+    <div class="max-w-md w-full bg-zinc-900 p-8 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-center mb-6">Verify OTP</h2>
+
+      <form action="/verify-otp" method="POST" class="space-y-4">
+        <input
+          type="text"
+          name="otps"
+          placeholder="Enter OTP"
+          required
+          class="w-full px-4 py-2 bg-zinc-800 text-white border border-zinc-700 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-purple-600 text-white font-semibold py-2 rounded hover:bg-purple-700 transition"
+        >
+          Verify OTP
+        </button>
+      </form>
+
+      <% if (locals.error) { %>
+        <div class="mt-5 w-full p-4 rounded-lg bg-red-400 bg-opacity-10 text-white text-sm font-medium shadow border border-purple-400">
+          <%= locals.error %>
+        </div>
+      <% } %>
+
+    </div>
+  </div>
+
+  <!-- Welcome Message on the Right -->
+  <div class="w-1/2 hidden lg:flex items-center justify-center bg-purple-800 text-white p-10 order-1 lg:order-2">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-4">Verify and Login</h1>
+      <p class="text-lg text-gray-200">Enter the OTP sent to your email.</p>
+    </div>
+  </div>
+
+</body>
+</html>

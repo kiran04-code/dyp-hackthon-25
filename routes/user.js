@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 const getEmailMessage = require('../utils/emailTemplate') // import the function
 const axios = require('axios')
 const getSMSMessage = require('../utils/smsTemplate') // import the function
+const getOTPEmailMessage = require('../utils/otp') // import the function
 require('dotenv').config()
 
 
@@ -133,16 +134,44 @@ routes.post("/signup", async (req, res) => {
    }
  })
 // Signin POST route
+const otp = Math.floor(1000 + Math.random() * 9000);
 routes.post("/signin", async (req, res) => {
-    try {
-        const { email, password } = req.body
-        const token = await user.matchthetoken(email, password)
-        return res.cookie("token", token).redirect('/')
-    } catch (error) {
-        return res.render('signin2', { error: "Incorrect Password!" })
-    }
-})
+  try {
+    const { email, password } = req.body;
 
+    // 1. Verify email & password
+    const token = await user.matchthetoken(email, password);
+    res.cookie("token", token);
+
+    // 4. Send OTP email
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      port: 465,
+      secure: true,
+      auth: {
+        user: 'lifeshield00001@gmail.com',
+        pass: 'dist ldxg ckzp iiur'
+      }
+    });
+
+    const mailOptions = {
+      from: 'lifeshield00001@gmail.com',
+      to: email,
+      subject: 'Your OTP Code for Login',
+      html: getOTPEmailMessage(otp) // this function must return full HTML
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully.');
+
+    // 5. Redirect to OTP entry page
+    res.redirect('/otp');
+
+  } catch (error) {
+    console.error(error);
+    return res.render('signin2', { error: "Incorrect Password!" });
+  }
+});
 // Logout
 routes.get('/logout', (req, res) => {
     res.clearCookie("token").redirect('/')
@@ -165,5 +194,24 @@ routes.post("/profile/edit/:id",async (req,res)=>{
   );
   res.clearCookie("token").redirect("/signin")
 
+})
+routes.get('/infouser', (req, res) => {
+    res.render('moreinfo')
+})
+routes.get('/otp', (req, res) => {
+    res.render('otp')
+})
+routes.post("/verify-otp",(req,res)=>{
+  try{
+    const {otps} = req.body 
+    if(otp == otps){
+    res.redirect("/")
+  }
+  else{
+    return res.render('otp', { error: "Incorrect OTP!" })
+  }
+  }catch(error){
+    return res.render('otp', { error: "Incorrect OTP!" })
+  }
 })
 module.exports = routes
